@@ -33,7 +33,7 @@ export default function Login() {
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mb-6">
+          <div className="mx-auto w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
@@ -98,7 +98,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-sm hover:shadow-md"
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-sm hover:shadow-md"
             >
               {loading ? (
                 <div className="flex items-center space-x-2">
@@ -112,18 +112,18 @@ export default function Login() {
           </form>
 
           {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mt-6 p-4 bg-pink-50 rounded-lg border border-pink-200">
             <div className="flex items-start space-x-3">
               <div className="flex-shrink-0">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
-                <h4 className="text-sm font-medium text-blue-800 mb-1">Demo Credentials</h4>
-                <p className="text-sm text-blue-700">
-                  Username: <code className="bg-blue-100 px-1 rounded">emilys</code><br />
-                  Password: <code className="bg-blue-100 px-1 rounded">emilyspass</code>
+                <h4 className="text-sm font-medium text-purple-800 mb-1">Demo Credentials</h4>
+                <p className="text-sm text-purple-700">
+                  Username: <code className="bg-pink-100 px-1 rounded">emilys</code><br />
+                  Password: <code className="bg-pink-100 px-1 rounded">emilyspass</code>
                 </p>
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function Login() {
         <div className="text-center">
           <button
             onClick={() => navigate('/catalog')}
-            className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+            className="text-pink-600 hover:text-pink-700 font-medium transition-colors duration-200"
           >
             ← Back to Catalog
           </button>
@@ -142,4 +142,4 @@ export default function Login() {
       </div>
     </div>
   );
-} 
+}

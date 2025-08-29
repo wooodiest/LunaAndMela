@@ -64,7 +64,7 @@ export default function Catalog() {
             <p className="text-gray-600">Discover amazing products at great prices</p>
           </div>
           <button 
-            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md flex items-center space-x-2"
+            className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md flex items-center space-x-2"
             onClick={load} 
             disabled={loading}
           >
@@ -114,7 +114,7 @@ export default function Catalog() {
           <p className="text-gray-600">Discover amazing products at great prices</p>
         </div>
         <button 
-          className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md flex items-center space-x-2 cursor-pointer"
+          className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md flex items-center space-x-2 cursor-pointer"
           onClick={load} 
           disabled={loading}
         >
@@ -160,8 +160,8 @@ export default function Catalog() {
               
               {/* Product info */}
               <div className="p-6">
-                <div className="text-sm text-blue-600 font-medium mb-1">{p.brand}</div>             
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+                <div className="text-sm text-pink-600 font-medium mb-1">{p.brand}</div>             
+                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-pink-600 transition-colors duration-200">
                   {p.title}
                 </h3>         
                 <div className="flex items-center space-x-1 mb-3">
@@ -183,7 +183,7 @@ export default function Catalog() {
                 {/* Price */}
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold text-blue-600">${priceInfo.discounted}</span>
+                    <span className="text-2xl font-bold text-pink-600">${priceInfo.discounted}</span>
                     {priceInfo.hasDiscount && (
                       <span className="text-sm text-gray-500 line-through">${priceInfo.original}</span>
                     )}
@@ -222,7 +222,7 @@ export default function Catalog() {
           <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
           <p className="text-gray-600 mb-6">Try refreshing the page or check back later.</p>
           <button 
-            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium"
+            className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 font-medium"
             onClick={load}
           >
             Refresh Products
@@ -231,4 +231,4 @@ export default function Catalog() {
       )}
     </div>
   );
-} 
+}

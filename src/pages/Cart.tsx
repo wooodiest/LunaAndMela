@@ -100,7 +100,7 @@ export default function Cart() {
                         {/* Price and Stock */}
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-center space-x-2">
-                            <span className="text-xl font-bold text-blue-600">${priceInfo.discounted}</span>
+                            <span className="text-xl font-bold text-pink-600">${priceInfo.discounted}</span>
                             {priceInfo.hasDiscount && (
                               <span className="text-sm text-gray-500 line-through">${priceInfo.original}</span>
                             )}
@@ -206,8 +206,8 @@ export default function Cart() {
               {/* Discount Savings */}
               {entries.some(item => item.product.discountPercentage > 0) && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-green-600">Total Savings</span>
-                  <span className="text-green-600 font-medium">
+                  <span className="text-pink-600">Total Savings</span>
+                  <span className="text-pink-600 font-medium">
                     -${entries.reduce((sum, item) => {
                       const savings = (item.product.price * item.product.discountPercentage / 100) * item.quantity;
                       return sum + savings;
@@ -218,12 +218,12 @@ export default function Cart() {
               
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Shipping</span>
-                <span className="text-green-600 font-medium">Free</span>
+                <span className="text-pink-600 font-medium">Free</span>
               </div>         
               <div className="border-t border-gray-200 pt-4">
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span className="text-blue-600">${(total).toFixed(2)}</span>
+                  <span className="text-pink-600">${(total).toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function Cart() {
             <div className="mt-4 text-center">
               <a 
                 href="/catalog" 
-                className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+                className="text-pink-600 hover:text-pink-700 font-medium transition-colors duration-200"
               >
                 ← Continue Shopping
               </a>

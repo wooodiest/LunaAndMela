@@ -10,7 +10,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 export default function App() {
   return (
     <HashRouter>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-beige-100">
         <NavBar />
         <main className="container mx-auto px-4 py-8">
           <Routes>

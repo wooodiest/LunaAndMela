@@ -31,7 +31,7 @@ html {
 
 .focus-ring:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 2px #ec4899, 0 0 0 4px rgba(236, 72, 153, 0.1);
 }
 
 @keyframes fadeIn {
@@ -71,7 +71,7 @@ html {
 }
 
 .gradient-text {
-  background: linear-gradient(to right, #2563eb, #4f46e5);
+  background: linear-gradient(to right, #ec4899, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -99,11 +99,11 @@ export default function ProductPage() {
       <nav className="mb-6 text-sm">
         <ol className="flex items-center gap-2 text-gray-500">
           <li>
-            <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link>
+            <Link to="/" className="hover:text-pink-600 transition-colors">Home</Link>
           </li>
           <li className="flex items-center">
             <span className="mx-1">/</span>
-            <Link to="/catalog" className="hover:text-blue-600 transition-colors">Catalog</Link>
+            <Link to="/catalog" className="hover:text-pink-600 transition-colors">Catalog</Link>
           </li>
           <li className="flex items-center">
             <span className="mx-1">/</span>
@@ -129,7 +129,7 @@ export default function ProductPage() {
         <div className="lg:col-span-6">
           <section className="space-y-4">
             <div className="flex items-center gap-3 text-sm">
-              <span className="text-blue-600 font-medium">{product.brand}</span>
+              <span className="text-pink-600 font-medium">{product.brand}</span>
               <span className="text-gray-300">•</span>
               <span className="text-gray-600 capitalize">{product.category}</span>
             </div>
@@ -142,7 +142,7 @@ export default function ProductPage() {
               </span>
             </div>
             <div className="flex items-end gap-3">
-              <span className="text-3xl md:text-4xl font-bold text-blue-600">${priceInfo.discounted}</span>
+              <span className="text-3xl md:text-4xl font-bold text-pink-600">${priceInfo.discounted}</span>
               {priceInfo.hasDiscount && (
                 <>
                   <span className="text-lg text-gray-500 line-through">${priceInfo.original}</span>
@@ -258,7 +258,7 @@ function PageChrome({ title, subtitle, children, onRefresh, loading }: {
         </div>
         {onRefresh && (
           <button
-            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all font-medium shadow-sm disabled:opacity-60"
+            className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium shadow-sm disabled:opacity-60"
             onClick={onRefresh}
             disabled={loading}
           >
@@ -304,7 +304,7 @@ function ProductGallery({
               key={i}
               onClick={() => onSelect(i)}
               className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border transition-all ${
-                selectedIndex === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-300'
+                selectedIndex === i ? 'border-pink-500 ring-2 ring-pink-200' : 'border-gray-200 hover:border-gray-300'
               }`}
               aria-label={`Change to image ${i + 1}`}
             >
@@ -407,7 +407,7 @@ function AddToCartCard({
             ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
             : addedToCart
             ? 'bg-emerald-600 text-white cursor-default'
-            : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-sm cursor-pointer'
+            : 'bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:from-pink-600 hover:to-purple-700 shadow-sm cursor-pointer'
         }`}
       >
         {disabled ? (
@@ -452,12 +452,12 @@ function Tabs<T extends string>({
               key={String(it.value)}
               onClick={() => onChange(it.value)}
               className={`relative px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
-                active ? 'text-blue-700' : 'text-gray-600 hover:text-gray-800'
+                active ? 'text-pink-700' : 'text-gray-600 hover:text-gray-800'
               }`}
             >
               {it.label}
               <span
-                className={`absolute left-0 right-0 -bottom-[1px] h-0.5 ${active ? 'bg-blue-600' : 'bg-transparent'}`}
+                className={`absolute left-0 right-0 -bottom-[1px] h-0.5 ${active ? 'bg-pink-600' : 'bg-transparent'}`}
               />
             </button>
           );
