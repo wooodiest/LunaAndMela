@@ -56,7 +56,7 @@ export default function ProductPage() {
     return {
       original: price.toFixed(2),
       discounted: discountedPrice.toFixed(2),
-      hasDiscount: discountPercentage > 0,
+      hasDiscount: discountPercentage > 0.999,
     };
   };
 

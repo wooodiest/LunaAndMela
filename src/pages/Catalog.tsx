@@ -51,7 +51,7 @@ export default function Catalog() {
     return {
       original: price.toFixed(2),
       discounted: discountedPrice.toFixed(2),
-      hasDiscount: discountPercentage > 0
+      hasDiscount: discountPercentage > 0.999
     };
   };
 
@@ -135,7 +135,7 @@ export default function Catalog() {
             <Link 
               key={p.id} 
               to={`/product/${p.id}`} 
-              className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-200"
+              className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-pink-300"
             >
               <div className="relative overflow-hidden">
                 <CachedImage 
