@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Product } from '../models/Product';
+import { useAuthStore } from './auth';
 
 export type CartItem = {
   product: Product;
@@ -8,57 +9,121 @@ export type CartItem = {
 };
 
 export type CartState = {
-  items: Record<number, CartItem>;
-  addItem: (product: Product, quantity?: number) => void;
-  removeItem: (productId: number) => void;
-  setQuantity: (productId: number, quantity: number) => void;
-  clear: () => void;
+  userCarts: Record<number, Record<number, CartItem>>;
+  addItem: (product: Product, quantity?: number, userId?: number) => void;
+  removeItem: (productId: number, userId?: number) => void;
+  setQuantity: (productId: number, quantity: number, userId?: number) => void;
+  clear: (userId?: number) => void;
+
+  getCurrentUserItems: () => Record<number, CartItem>;
+  getCurrentUserItemsArray: () => CartItem[];
 };
+
+function getCurrentUserId(): number | null {
+  const user = useAuthStore.getState().user;
+  return user?.id || null;
+}
 
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
-      items: {},
-      addItem: (product, quantity = 1) => {
-        const current = get().items[product.id];
-        const nextQty = Math.min((current?.quantity ?? 0) + quantity, product.stock);
-        set(state => ({
-          items: {
-            ...state.items,
-            [product.id]: { product, quantity: nextQty },
-          },
-        }));
-      },
-      removeItem: (productId) => {
+      userCarts: {},
+      
+      addItem: (product, quantity = 1, userId) => {
+        const currentUserId = userId || getCurrentUserId();
+        if (!currentUserId) return;
+
         set(state => {
-          const copy = { ...state.items };
-          delete copy[productId];
-          return { items: copy };
-        });
-      },
-      setQuantity: (productId, quantity) => {
-        if (quantity <= 0) {
-          set(state => {
-            const copy = { ...state.items };
-            delete copy[productId];
-            return { items: copy };
-          });
-          return;
-        }
-        set(state => {
-          const current = state.items[productId];
-          if (!current) return state;
-          // Limit quantity to available stock
-          const limitedQuantity = Math.min(quantity, current.product.stock);
+          const currentUserCart = state.userCarts[currentUserId] || {};
+          const current = currentUserCart[product.id];
+          const nextQty = Math.min((current?.quantity ?? 0) + quantity, product.stock);
+          
           return {
-            items: {
-              ...state.items,
-              [productId]: { ...current, quantity: limitedQuantity },
+            userCarts: {
+              ...state.userCarts,
+              [currentUserId]: {
+                ...currentUserCart,
+                [product.id]: { product, quantity: nextQty },
+              },
             },
           };
         });
       },
-      clear: () => set({ items: {} }),
+      
+      removeItem: (productId, userId) => {
+        const currentUserId = userId || getCurrentUserId();
+        if (!currentUserId) return;
+
+        set(state => {
+          const currentUserCart = state.userCarts[currentUserId];
+          if (!currentUserCart) return state;
+          
+          const copy = { ...currentUserCart };
+          delete copy[productId];
+          
+          return {
+            userCarts: {
+              ...state.userCarts,
+              [currentUserId]: copy,
+            },
+          };
+        });
+      },
+      
+      setQuantity: (productId, quantity, userId) => {
+        const currentUserId = userId || getCurrentUserId();
+        if (!currentUserId) return;
+
+        if (quantity <= 0) {
+          get().removeItem(productId, currentUserId);
+          return;
+        }
+        
+        set(state => {
+          const currentUserCart = state.userCarts[currentUserId];
+          if (!currentUserCart) return state;
+          
+          const current = currentUserCart[productId];
+          if (!current) return state;
+          
+          const limitedQuantity = Math.min(quantity, current.product.stock);
+          
+          return {
+            userCarts: {
+              ...state.userCarts,
+              [currentUserId]: {
+                ...currentUserCart,
+                [productId]: { ...current, quantity: limitedQuantity },
+              },
+            },
+          };
+        });
+      },
+      
+      clear: (userId) => {
+        const currentUserId = userId || getCurrentUserId();
+        if (!currentUserId) return;
+
+        set(state => ({
+          userCarts: {
+            ...state.userCarts,
+            [currentUserId]: {},
+          },
+        }));
+      },
+      
+      getCurrentUserItems: () => {
+        const currentUserId = getCurrentUserId();
+        if (!currentUserId) return {};
+        
+        const state = get();
+        return state.userCarts[currentUserId] || {};
+      },
+      
+      getCurrentUserItemsArray: () => {
+        const items = get().getCurrentUserItems();
+        return Object.values(items);
+      },
     }),
     { name: 'cart-store' }
   )

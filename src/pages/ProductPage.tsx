@@ -18,6 +18,7 @@ export default function ProductPage() {
   const [selectedImage, setSelectedImage] = React.useState(0);
   const [tab, setTab] = React.useState<'description' | 'specs' | 'reviews'>('description');
   const addItem = useCartStore((s) => s.addItem);
+  const getCurrentUserItems = useCartStore((s) => s.getCurrentUserItems);
 
   const load = React.useCallback(async () => {
     if (!id) return;
@@ -39,10 +40,11 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     if (product) {
-      const cartItem = useCartStore.getState().items[product.id];
+      const currentUserItems = getCurrentUserItems();
+      const cartItem = currentUserItems[product.id];
       const currentInCart = cartItem?.quantity ?? 0;
       if (currentInCart + quantity > product.stock) {
-        alert('You cannot add more products than what is in stock');
+        alert(`You already have ${currentInCart} items in cart. Cannot add more than ${product.stock} total.`);
         return;
       }
       addItem(product, quantity);
@@ -154,16 +156,14 @@ export default function ProductPage() {
             </div>
             <p className="text-gray-600 leading-relaxed line-clamp-3">{product.description}</p>
             <div className="lg:sticky lg:top-28">
-              <AddToCartCard
-                id={product.id}
-                stock={product.stock}
-                availabilityStatus={product.availabilityStatus}
-                quantity={quantity}
-                setQuantity={setQuantity}
-                onAdd={handleAddToCart}
-                unitPrice={parseFloat(priceInfo.discounted)}
-                addedToCart={addedToCart}
-              />
+                             <AddToCartCard
+                 stock={product.stock}
+                 quantity={quantity}
+                 setQuantity={setQuantity}
+                 onAdd={handleAddToCart}
+                 unitPrice={parseFloat(priceInfo.discounted)}
+                 addedToCart={addedToCart}
+               />
             </div>
           </section>
         </div>
@@ -318,7 +318,6 @@ function ProductGallery({
 }
 
 function AddToCartCard({
-  id,
   stock,
   quantity,
   setQuantity,
@@ -372,22 +371,11 @@ function AddToCartCard({
               value={quantity}
               onChange={(e) => {
                 const newQuantity = Math.max(1, Number(e.target.value));
-                const cartItem = useCartStore.getState().items[id];
-                const currentInCart = cartItem?.quantity ?? 0;
-                if (currentInCart + newQuantity > stock) {
-                  alert('You cannot add more products than what is in stock');
-                  return;
-                }
                 setQuantity(newQuantity);
               }}
             />
             <button
               onClick={() => {
-                const cartItem = useCartStore.getState().items[id];
-                const currentInCart = cartItem?.quantity ?? 0;
-                if (currentInCart + quantity >= stock) {
-                  return;
-                }
                 setQuantity(quantity + 1);
               }}
               className="px-3 py-1.5 text-gray-700 hover:bg-gray-100 font-medium cursor-pointer"
