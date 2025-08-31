@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
 
 let mainWindow: BrowserWindow | null = null;
@@ -33,6 +33,9 @@ const createWindow = () => {
   // mainWindow.webContents.openDevTools();
 };
 
+ipcMain.handle('get-app-version', () => {
+  return app.getVersion();
+});
 
 app.whenReady().then(() => {
   createWindow();

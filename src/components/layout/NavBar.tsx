@@ -19,6 +19,16 @@ export default function NavBar() {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (window.electronAPI) {
+      window.electronAPI.getAppVersion().then((version: string) => {
+        console.log('Luna & Mela - App Version:', version);
+      }).catch((error: any) => {
+        console.error('Error getting app version:', error);
+      });
+    }
+  }, []);
+
   return (
     <nav className="bg-white/80 backdrop-blur-md border-b border-pink-200/50 shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4">
