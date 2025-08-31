@@ -145,20 +145,17 @@ export default function Catalog() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                {/* Discount Badge */}
                 {priceInfo.hasDiscount && (
                   <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
                     -{p.discountPercentage.toFixed(0)}%
                   </div>
                 )}
                 
-                {/* Stock Status */}
                 <div className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${stockStatus.color}`}>
                   {stockStatus.text}
                 </div>
               </div>
               
-              {/* Product info */}
               <div className="p-6">
                 <div className="text-sm text-pink-600 font-medium mb-1">{p.brand}</div>             
                 <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-pink-600 transition-colors duration-200">
@@ -180,7 +177,6 @@ export default function Catalog() {
                   <span className="text-sm text-gray-600">({p.reviews.length})</span>
                 </div>
                 
-                {/* Price */}
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     <span className="text-2xl font-bold text-pink-600">${priceInfo.discounted}</span>
@@ -191,7 +187,6 @@ export default function Catalog() {
                   <span className="text-sm text-gray-500">Stock: {p.stock}</span>
                 </div>
                 
-                {/* Tags */}
                 <div className="flex flex-wrap gap-1 mb-3">
                   {p.tags.slice(0, 2).map((tag, index) => (
                     <span 

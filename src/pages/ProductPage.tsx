@@ -499,7 +499,6 @@ function Avatar({ name }: { name: string }) {
   );
 }
 
-/* ---------------------------------- Ikony --------------------------------- */
 function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>

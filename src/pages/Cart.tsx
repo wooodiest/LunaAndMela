@@ -202,8 +202,6 @@ export default function Cart() {
                             </svg>
                           </button>
                         </div>
-
-                        {/* Remove Button */}
                         <button 
                           className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200"
                           onClick={() => removeItem(product.id)}

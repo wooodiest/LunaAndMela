@@ -53,7 +53,6 @@ export default function NavBar() {
 
           {/* Right Side */}
           <div className="flex items-center space-x-4">
-            {/* Online Status */}
             <div className="hidden sm:flex items-center space-x-2 px-3 py-1.5 bg-gray-100 rounded-full">
               <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'}`} />
               <span className={`text-xs font-medium ${isOnline ? 'text-green-700' : 'text-red-700'}`}>
@@ -61,7 +60,6 @@ export default function NavBar() {
               </span>
             </div>
 
-            {/* Auth Buttons */}
             {isAuthenticated ? (
               <button 
                 className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md cursor-pointer"
