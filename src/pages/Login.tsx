@@ -6,8 +6,8 @@ import ErrorMessage from '../components/ui/ErrorMessage';
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation() as any;
-  const [username, setUsername] = React.useState('emilys');
-  const [password, setPassword] = React.useState('emilyspass');
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
   const login = useAuthStore(s => s.login);
